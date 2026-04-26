@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xycy.chestimaging.mapper.ModelMapper">
+
+    <resultMap id="BaseResultMap" type="com.xycy.chestimaging.model.Model">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="version" property="version"/>
+        <result column="status" property="status"/>
+        <result column="accuracy" property="accuracy"/>
+        <result column="loaded_at" property="loadedAt"/>
+        <result column="activated_at" property="activatedAt"/>
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM model WHERE id = #{id}
+    </select>
+
+    <select id="findActiveModel" resultMap="BaseResultMap">
+        SELECT * FROM model WHERE status = 'active' LIMIT 1
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM model
+    </select>
+
+    <insert id="insert" parameterType="com.xycy.chestimaging.model.Model" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO model (name, version, status, accuracy, loaded_at, activated_at) 
+                VALUES (#{name}, #{version}, #{status}, #{accuracy}, #{loadedAt}, #{activatedAt})
+    </insert>
+
+    <update id="update" parameterType="com.xycy.chestimaging.model.Model">
+        UPDATE model SET name = #{name}, version = #{version}, status = #{status}, 
+                accuracy = #{accuracy}, activated_at = #{activatedAt} WHERE id = #{id}
+    </update>
+
+    <update id="deactivateAll">
+        UPDATE model SET status = 'loaded' WHERE status = 'active'
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM model WHERE id = #{id}
+    </delete>
+
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM model
+    </select>
+
+    <select id="findByNameAndVersion" resultMap="BaseResultMap">
+        SELECT * FROM model WHERE name = #{name} AND version = #{version}
+    </select>
+
+    <update id="updateAccuracy">
+        UPDATE model SET accuracy = #{accuracy} WHERE id = #{id}
+    </update>
+
+</mapper>

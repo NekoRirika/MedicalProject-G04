@@ -1,0 +1,20 @@
+.idea/
+.vscode/
+
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+ai/__pycache__/
+ai/model/model1/
+ai/model/model2/
+ai/model/
+
+backend/target/
+# 上传文件
+backend/uploads/
+# 日志文件
+backend/logs/
+
+.DS_Store
+Thumbs.db

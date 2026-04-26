@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>病例详情 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 医生/科研人员菜单 -->
+                <a href="case-management.html" class="menu-item">病例管理</a>
+                <a href="model-management.html" class="menu-item">模型管理</a>
+                <a href="feedback.html" class="menu-item">评价反馈</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>病例详情</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">D</div>
+                        <span>张医生</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 病例信息 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>病例信息</h2>
+                        <div class="btn-group" style="float: right; margin-top: -10px;">
+                            <button class="btn btn-primary">编辑病例</button>
+                            <button class="btn btn-danger" onclick="confirmDelete('病例')">删除病例</button>
+                        </div>
+                    </div>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>病例编号</label>
+                                <input type="text" value="CASE-20260317-001" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>患者姓名</label>
+                                <input type="text" value="匿名患者1" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>患者年龄</label>
+                                <input type="text" value="45" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>患者性别</label>
+                                <input type="text" value="男" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>病例描述</label>
+                            <textarea rows="3" disabled>患者因咳嗽、发热3天就诊，无呼吸困难，既往有高血压病史。</textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>检查日期</label>
+                                <input type="text" value="2026-03-17" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>创建时间</label>
+                                <input type="text" value="2026-03-17 09:30:00" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 影像管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>影像管理</h2>
+                        <button class="btn btn-primary" style="float: right; margin-top: -10px;" onclick="uploadFile()">上传影像</button>
+                    </div>
+                    <div class="image-preview">
+                        <div class="image-item">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chest%20X-ray%20image%20medical&image_size=square" alt="影像1">
+                        </div>
+                        <div class="image-item">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chest%20X-ray%20image%20medical&image_size=square" alt="影像2">
+                        </div>
+                        <div class="image-item">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chest%20X-ray%20image%20medical&image_size=square" alt="影像3">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 检测管理 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>检测管理</h2>
+                    </div>
+                    <div style="text-align: center; padding: 40px;">
+                        <button class="btn btn-primary" style="font-size: 18px; padding: 15px 30px;" onclick="startDetection()">发起肺炎检测</button>
+                        <p style="margin-top: 20px; color: var(--text-light);">点击按钮开始AI辅助检测，检测结果将在新页面展示</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

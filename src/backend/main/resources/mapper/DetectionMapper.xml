@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xycy.chestimaging.mapper.DetectionMapper">
+
+    <resultMap id="BaseResultMap" type="com.xycy.chestimaging.model.Detection">
+        <id column="id" property="id"/>
+        <result column="case_id" property="caseId"/>
+        <result column="model_id" property="modelId"/>
+        <result column="status" property="status"/>
+        <result column="result" property="result"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="completed_at" property="completedAt"/>
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM detection WHERE id = #{id}
+    </select>
+
+    <select id="findByCaseId" resultMap="BaseResultMap">
+        SELECT * FROM detection WHERE case_id = #{caseId}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM detection
+    </select>
+
+    <insert id="insert" parameterType="com.xycy.chestimaging.model.Detection" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO detection (case_id, model_id, status, result, created_at, completed_at) 
+                VALUES (#{caseId}, #{modelId}, #{status}, #{result}, #{createdAt}, #{completedAt})
+    </insert>
+
+    <update id="update" parameterType="com.xycy.chestimaging.model.Detection">
+        UPDATE detection SET case_id = #{caseId}, model_id = #{modelId}, 
+                status = #{status}, result = #{result}, completed_at = #{completedAt} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM detection WHERE id = #{id}
+    </delete>
+
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM detection
+    </select>
+    
+    <select id="countByDate" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM detection 
+        WHERE created_at &gt;= #{date} AND created_at &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
+    </select>
+    
+    <select id="countCompletedByDate" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM detection 
+        WHERE status = 'completed' 
+        AND created_at &gt;= #{date} AND created_at &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
+    </select>
+
+    <select id="findByModelId" resultMap="BaseResultMap">
+        SELECT * FROM detection WHERE model_id = #{modelId} AND status = 'completed'
+    </select>
+
+</mapper>

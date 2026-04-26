@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 管理员菜单 -->
+                <a href="user-management.html" class="menu-item active">用户管理</a>
+                <a href="audit-log.html" class="menu-item">审计日志</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>用户管理</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 搜索和操作栏 -->
+                <div class="card">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="请输入用户名或科室">
+                        <button class="search-btn">搜索</button>
+                        <button class="btn btn-primary" style="margin-left: 10px;" onclick="navigateTo('user-create.html')">创建账号</button>
+                    </div>
+                </div>
+                
+                <!-- 用户列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>用户列表</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>姓名</th>
+                                    <th>科室</th>
+                                    <th>角色</th>
+                                    <th>状态</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>admin</td>
+                                    <td>管理员</td>
+                                    <td>信息科</td>
+                                    <td>管理员</td>
+                                    <td>正常</td>
+                                    <td>2026-03-01</td>
+                                    <td>
+                                        <button class="btn btn-primary">编辑</button>
+                                        <button class="btn btn-secondary">重置密码</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>doctor1</td>
+                                    <td>张医生</td>
+                                    <td>超声科</td>
+                                    <td>医生</td>
+                                    <td>正常</td>
+                                    <td>2026-03-05</td>
+                                    <td>
+                                        <button class="btn btn-primary">编辑</button>
+                                        <button class="btn btn-secondary">重置密码</button>
+                                        <button class="btn btn-danger">锁定</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>researcher1</td>
+                                    <td>李研究员</td>
+                                    <td>科研科</td>
+                                    <td>科研人员</td>
+                                    <td>正常</td>
+                                    <td>2026-03-10</td>
+                                    <td>
+                                        <button class="btn btn-primary">编辑</button>
+                                        <button class="btn btn-secondary">重置密码</button>
+                                        <button class="btn btn-danger">锁定</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>doctor2</td>
+                                    <td>王医生</td>
+                                    <td>超声科</td>
+                                    <td>医生</td>
+                                    <td>锁定</td>
+                                    <td>2026-03-15</td>
+                                    <td>
+                                        <button class="btn btn-primary">编辑</button>
+                                        <button class="btn btn-secondary">重置密码</button>
+                                        <button class="btn btn-success">解锁</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button>上一页</button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>下一页</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审计日志 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 管理员菜单 -->
+                <a href="user-management.html" class="menu-item">用户管理</a>
+                <a href="audit-log.html" class="menu-item active">审计日志</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>审计日志</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span>管理员</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 搜索和筛选 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>日志筛选</h2>
+                    </div>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="operator">操作人</label>
+                                <input type="text" id="operator" placeholder="请输入操作人">
+                            </div>
+                            <div class="form-group">
+                                <label for="operation-type">操作类型</label>
+                                <select id="operation-type">
+                                    <option value="">全部</option>
+                                    <option value="login">登录</option>
+                                    <option value="create">创建</option>
+                                    <option value="upload">上传</option>
+                                    <option value="detection">检测</option>
+                                    <option value="export">导出</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="start-time">开始时间</label>
+                                <input type="datetime-local" id="start-time">
+                            </div>
+                            <div class="form-group">
+                                <label for="end-time">结束时间</label>
+                                <input type="datetime-local" id="end-time">
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary">查询</button>
+                            <button class="btn btn-secondary">重置</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 日志列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>操作记录</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>操作时间</th>
+                                    <th>操作人</th>
+                                    <th>操作类型</th>
+                                    <th>操作内容</th>
+                                    <th>IP地址</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-03-17 10:00:00</td>
+                                    <td>doctor1</td>
+                                    <td>检测</td>
+                                    <td>发起肺炎检测</td>
+                                    <td>192.168.1.100</td>
+                                    <td>成功</td>
+                                    <td>
+                                        <button class="btn btn-primary">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-17 09:30:00</td>
+                                    <td>doctor1</td>
+                                    <td>上传</td>
+                                    <td>上传影像文件</td>
+                                    <td>192.168.1.100</td>
+                                    <td>成功</td>
+                                    <td>
+                                        <button class="btn btn-primary">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-17 09:00:00</td>
+                                    <td>doctor1</td>
+                                    <td>创建</td>
+                                    <td>创建病例</td>
+                                    <td>192.168.1.100</td>
+                                    <td>成功</td>
+                                    <td>
+                                        <button class="btn btn-primary">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-17 08:30:00</td>
+                                    <td>researcher1</td>
+                                    <td>模型切换</td>
+                                    <td>切换到模型 v2.0</td>
+                                    <td>192.168.1.101</td>
+                                    <td>成功</td>
+                                    <td>
+                                        <button class="btn btn-primary">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-17 08:00:00</td>
+                                    <td>admin</td>
+                                    <td>登录</td>
+                                    <td>系统登录</td>
+                                    <td>192.168.1.102</td>
+                                    <td>成功</td>
+                                    <td>
+                                        <button class="btn btn-primary">查看详情</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button>上一页</button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>下一页</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

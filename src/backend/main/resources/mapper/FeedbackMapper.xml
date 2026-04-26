@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xycy.chestimaging.mapper.FeedbackMapper">
+
+    <resultMap id="BaseResultMap" type="com.xycy.chestimaging.model.Feedback">
+        <id column="id" property="id"/>
+        <result column="detection_id" property="detectionId"/>
+        <result column="evaluation" property="evaluation"/>
+        <result column="feedback" property="feedback"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="created_by" property="createdBy"/>
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM feedback WHERE id = #{id}
+    </select>
+
+    <select id="findByDetectionId" resultMap="BaseResultMap">
+        SELECT * FROM feedback WHERE detection_id = #{detectionId}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM feedback
+    </select>
+
+    <insert id="insert" parameterType="com.xycy.chestimaging.model.Feedback" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO feedback (detection_id, evaluation, feedback, created_at, created_by) 
+                VALUES (#{detectionId}, #{evaluation}, #{feedback}, #{createdAt}, #{createdBy})
+    </insert>
+
+    <update id="update" parameterType="com.xycy.chestimaging.model.Feedback">
+        UPDATE feedback SET detection_id = #{detectionId}, evaluation = #{evaluation}, 
+                feedback = #{feedback} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM feedback WHERE id = #{id}
+    </delete>
+
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM feedback
+    </select>
+
+    <!--分页查询所有反馈信息-->
+    <select id="findAllWithDetails" resultType="java.util.Map">
+        SELECT f.id, f.evaluation, f.feedback, f.created_at, f.created_by,
+               d.created_at as detect_time, c.case_id, c.patient_name
+        FROM feedback f
+                 JOIN detection d ON f.detection_id = d.id
+                 JOIN medical_case c ON d.case_id = c.id
+        ORDER BY f.created_at DESC
+            LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 查询反馈总数 -->
+    <select id="countAll" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM feedback
+    </select>
+
+</mapper>

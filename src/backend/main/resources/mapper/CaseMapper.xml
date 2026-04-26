@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xycy.chestimaging.mapper.CaseMapper">
+
+    <resultMap id="BaseResultMap" type="com.xycy.chestimaging.model.MedicalCase">
+        <id column="id" property="id"/>
+        <result column="case_id" property="caseId"/>
+        <result column="patient_name" property="patientName"/>
+        <result column="patient_gender" property="patientGender"/>
+        <result column="patient_id_card" property="patientIdCard"/>
+        <result column="patient_phone" property="patientPhone"/>
+        <result column="patient_birthday" property="patientBirthday"/>
+        <result column="case_description" property="caseDescription"/>
+        <result column="check_date" property="checkDate"/>
+        <result column="check_note" property="checkNote"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="created_by" property="createdBy"/>
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM medical_case WHERE id = #{id}
+    </select>
+
+    <select id="findByCaseId" resultMap="BaseResultMap">
+        SELECT * FROM medical_case WHERE case_id = #{caseId}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM medical_case
+    </select>
+
+    <insert id="insert" parameterType="com.xycy.chestimaging.model.MedicalCase" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO medical_case (case_id, patient_name, patient_gender,
+                                  patient_id_card, patient_phone, patient_birthday, case_description,
+                                  check_date, check_note, status, created_at, created_by)
+        VALUES (-1, #{patientName}, #{patientGender},
+                #{patientIdCard}, #{patientPhone}, #{patientBirthday}, #{caseDescription},
+                #{checkDate}, #{checkNote}, #{status}, #{createdAt}, #{createdBy})
+    </insert>
+
+    <update id="updateCaseId">
+        UPDATE medical_case SET case_id = id WHERE id = #{id}
+    </update>
+
+    <update id="update" parameterType="com.xycy.chestimaging.model.MedicalCase">
+        UPDATE medical_case
+        <set>
+<!--            <if test="caseId != null">case_id = #{caseId},</if>-->
+            <if test="patientName != null">patient_name = #{patientName},</if>
+            <if test="patientGender != null">patient_gender = #{patientGender},</if>
+            <if test="patientIdCard != null">patient_id_card = #{patientIdCard},</if>
+            <if test="patientPhone != null">patient_phone = #{patientPhone},</if>
+            <if test="patientBirthday != null">patient_birthday = #{patientBirthday},</if>
+            <if test="caseDescription != null">case_description = #{caseDescription},</if>
+            <if test="checkDate != null">check_date = #{checkDate},</if>
+            <if test="checkNote != null">check_note = #{checkNote},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM medical_case WHERE id = #{id}
+    </delete>
+
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM medical_case
+    </select>
+
+    <select id="findByCondition" resultMap="BaseResultMap">
+        SELECT * FROM medical_case 
+        <where>
+        <if test="caseId != null">
+          case_id = #{caseId}
+          <if test="patientName != null">AND</if>
+        </if>
+        <if test="patientName != null">
+          patient_name LIKE CONCAT('%', #{patientName}, '%')
+        </if>
+        </where>
+        ORDER BY id ASC 
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countByCondition" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM medical_case 
+        <where>
+        <if test="caseId != null">
+          case_id = #{caseId}
+          <if test="patientName != null">AND</if>
+        </if>
+        <if test="patientName != null">
+          patient_name LIKE CONCAT('%', #{patientName}, '%')
+        </if>
+        </where>
+    </select>
+
+    <select id="findCasesWithImageCount" resultType="java.util.Map">
+        SELECT 
+            mc.id,
+            mc.case_id AS caseId,
+            mc.patient_name AS patientName,
+            mc.created_at AS createdAt,
+            mc.status,
+            COUNT(i.id) AS imageCount
+        FROM medical_case mc
+        LEFT JOIN image i ON mc.id = i.case_id
+        <where>
+        <if test="caseId != null">
+          mc.case_id = #{caseId}
+          <if test="patientName != null">AND</if>
+        </if>
+        <if test="patientName != null">
+          mc.patient_name LIKE CONCAT('%', #{patientName}, '%')
+        </if>
+        </where>
+        GROUP BY mc.id, mc.case_id, mc.patient_name, mc.created_at, mc.status
+        ORDER BY mc.id ASC 
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countCasesWithImageCount" resultType="java.lang.Long">
+        SELECT COUNT(DISTINCT mc.id) FROM medical_case mc
+        <where>
+        <if test="caseId != null">
+          mc.case_id = #{caseId}
+          <if test="patientName != null">AND</if>
+        </if>
+        <if test="patientName != null">
+          mc.patient_name LIKE CONCAT('%', #{patientName}, '%')
+        </if>
+        </where>
+    </select>
+    
+    <select id="countByStatus" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM medical_case WHERE status = #{status}
+    </select>
+
+</mapper>

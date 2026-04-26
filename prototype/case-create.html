@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建病例 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 医生/科研人员菜单 -->
+                <a href="case-management.html" class="menu-item">病例管理</a>
+                <a href="model-management.html" class="menu-item">模型管理</a>
+                <a href="feedback.html" class="menu-item">评价反馈</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>创建病例</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">D</div>
+                        <span>张医生</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>病例基础信息</h2>
+                    </div>
+                    <form id="case-form" class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="case-id">病例编号 *</label>
+                                <input type="text" id="case-id" name="case-id" placeholder="请输入病例编号" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-name">患者姓名 *</label>
+                                <input type="text" id="patient-name" name="patient-name" placeholder="请输入患者姓名（脱敏处理）" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patient-age">患者年龄</label>
+                                <input type="number" id="patient-age" name="patient-age" placeholder="请输入患者年龄">
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-gender">患者性别</label>
+                                <select id="patient-gender" name="patient-gender">
+                                    <option value="">请选择</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="case-description">病例描述 *</label>
+                            <textarea id="case-description" name="case-description" rows="4" placeholder="请输入病例描述" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-date">检查日期</label>
+                            <input type="date" id="check-date" name="check-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="check-note">检查备注</label>
+                            <textarea id="check-note" name="check-note" rows="2" placeholder="请输入检查备注"></textarea>
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                            <button type="button" class="btn btn-secondary" onclick="navigateTo('case-management.html')">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评价反馈 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <a href="case-management.html" class="menu-item">病例管理</a>
+                <a href="model-management.html" class="menu-item">模型管理</a>
+                <a href="feedback.html" class="menu-item active">评价反馈</a>
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>评价反馈</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">D</div>
+                        <span>张医生</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 搜索和筛选 -->
+                <div class="card">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="请输入病例编号或患者姓名">
+                        <button class="search-btn">搜索</button>
+                    </div>
+                </div>
+                
+                <!-- 评价反馈列表 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>评价记录</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>病例编号</th>
+                                    <th>患者姓名</th>
+                                    <th>检测时间</th>
+                                    <th>检测结果</th>
+                                    <th>评价结果</th>
+                                    <th>评价时间</th>
+                                    <th>操作人</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CASE-20260317-001</td>
+                                    <td>匿名患者1</td>
+                                    <td>2026-03-17 10:00</td>
+                                    <td>肺炎病灶 (95%)</td>
+                                    <td>结果准确</td>
+                                    <td>2026-03-17 10:30</td>
+                                    <td>张医生</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="navigateTo('detection-result.html')">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CASE-20260316-001</td>
+                                    <td>匿名患者4</td>
+                                    <td>2026-03-16 15:00</td>
+                                    <td>肺炎病灶 (92%)</td>
+                                    <td>漏检</td>
+                                    <td>2026-03-16 15:30</td>
+                                    <td>李研究员</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="navigateTo('detection-result.html')">查看详情</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>CASE-20260315-001</td>
+                                    <td>匿名患者6</td>
+                                    <td>2026-03-15 09:00</td>
+                                    <td>肺炎病灶 (88%)</td>
+                                    <td>结果准确</td>
+                                    <td>2026-03-15 09:30</td>
+                                    <td>张医生</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="navigateTo('detection-result.html')">查看详情</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button>上一页</button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>下一页</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

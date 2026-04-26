@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测结果 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 医生/科研人员菜单 -->
+                <a href="case-management.html" class="menu-item">病例管理</a>
+                <a href="model-management.html" class="menu-item">模型管理</a>
+                <a href="feedback.html" class="menu-item">评价反馈</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>检测结果可视化</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">D</div>
+                        <span>张医生</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <!-- 检测信息 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>检测信息</h2>
+                    </div>
+                    <div class="form-container">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>病例编号</label>
+                                <input type="text" value="CASE-20260317-001" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>患者姓名</label>
+                                <input type="text" value="匿名患者1" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>检测时间</label>
+                                <input type="text" value="2026-03-17 10:00:00" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>使用模型</label>
+                                <input type="text" value="肺炎检测模型 v1.0" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 检测结果 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>检测结果</h2>
+                        <div class="btn-group" style="float: right; margin-top: -10px;">
+                            <button class="btn btn-primary" onclick="exportResult()">导出结果</button>
+                            <button class="btn btn-secondary" onclick="submitFeedback()">人工反馈</button>
+                        </div>
+                    </div>
+                    <div style="text-align: center; padding: 20px;">
+                        <div class="detection-result" style="position: relative; display: inline-block;">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chest%20X-ray%20image%20medical&image_size=landscape_4_3" alt="胸部X光片">
+                            <!-- AI标注框 -->
+                            <div class="bbox" style="top: 100px; left: 200px; width: 150px; height: 100px;">
+                                <div class="bbox-label">肺炎病灶 (95%)</div>
+                            </div>
+                            <div class="bbox" style="top: 150px; left: 400px; width: 120px; height: 80px;">
+                                <div class="bbox-label">肺炎病灶 (88%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <h3>检测结果分析</h3>
+                        <p>AI模型检测到2处肺炎病灶，置信度分别为95%和88%。建议结合临床症状进行进一步诊断。</p>
+                    </div>
+                </div>
+                
+                <!-- 人工反馈 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>人工反馈</h2>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label>评价结果</label>
+                            <div style="margin-top: 10px;">
+                                <label style="margin-right: 20px;"><input type="radio" name="feedback" value="准确"> 结果准确</label>
+                                <label style="margin-right: 20px;"><input type="radio" name="feedback" value="漏检"> 漏检</label>
+                                <label><input type="radio" name="feedback" value="误检"> 误检</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>反馈意见</label>
+                            <textarea rows="3" placeholder="请输入您的反馈意见"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="submitFeedback()">提交反馈</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

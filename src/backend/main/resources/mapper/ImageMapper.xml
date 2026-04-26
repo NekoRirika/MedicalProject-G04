@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xycy.chestimaging.mapper.ImageMapper">
+
+    <resultMap id="BaseResultMap" type="com.xycy.chestimaging.model.Image">
+        <id column="id" property="id"/>
+        <result column="case_id" property="caseId"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_path" property="filePath"/>
+        <result column="file_size" property="fileSize"/>
+        <result column="uploaded_at" property="uploadedAt"/>
+        <result column="uploaded_by" property="uploadedBy"/>
+    </resultMap>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM image WHERE id = #{id}
+    </select>
+
+    <select id="findByCaseId" resultMap="BaseResultMap">
+        SELECT * FROM image WHERE case_id = #{caseId}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM image
+    </select>
+
+    <insert id="insert" parameterType="com.xycy.chestimaging.model.Image" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO image (case_id, file_name, file_path, file_size, uploaded_at, uploaded_by) 
+                VALUES (#{caseId}, #{fileName}, #{filePath}, #{fileSize}, #{uploadedAt}, #{uploadedBy})
+    </insert>
+
+    <update id="update" parameterType="com.xycy.chestimaging.model.Image">
+        UPDATE image SET case_id = #{caseId}, file_name = #{fileName}, 
+                file_path = #{filePath}, file_size = #{fileSize} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM image WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteByCaseId" parameterType="java.lang.Long">
+        DELETE FROM image WHERE case_id = #{caseId}
+    </delete>
+
+    <select id="count" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM image
+    </select>
+
+    <select id="countByCaseId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM image WHERE case_id = #{caseId}
+    </select>
+    
+    <select id="countByDate" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM image 
+        WHERE uploaded_at &gt;= #{date} AND uploaded_at &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
+    </select>
+
+</mapper>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型管理 - 胸有成影医疗影像数据管理系统</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>胸有成影</h1>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">首页</a>
+                <!-- 医生/科研人员菜单 -->
+                <a href="case-management.html" class="menu-item">病例管理</a>
+                <a href="model-management.html" class="menu-item active">模型管理</a>
+                <a href="feedback.html" class="menu-item">评价反馈</a>
+                <!-- 通用菜单 -->
+                <a href="profile.html" class="menu-item">个人中心</a>
+                <a href="login.html" class="menu-item">退出登录</a>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <h2>模型管理</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">R</div>
+                        <span>李研究员</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <div class="content-area">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>模型列表</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>模型名称</th>
+                                    <th>版本</th>
+                                    <th>状态</th>
+                                    <th>准确率</th>
+                                    <th>加载时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>肺炎检测模型</td>
+                                    <td>v1.0</td>
+                                    <td>已加载</td>
+                                    <td>92%</td>
+                                    <td>2026-03-17 08:00</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="switchModel('v1.0')">切换为当前模型</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>肺炎检测模型</td>
+                                    <td>v1.1</td>
+                                    <td>已加载</td>
+                                    <td>95%</td>
+                                    <td>2026-03-17 09:00</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="switchModel('v1.1')">切换为当前模型</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>肺炎检测模型</td>
+                                    <td>v2.0</td>
+                                    <td>已加载</td>
+                                    <td>97%</td>
+                                    <td>2026-03-17 10:00</td>
+                                    <td>
+                                        <button class="btn btn-primary" onclick="switchModel('v2.0')">切换为当前模型</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2>当前模型</h2>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>模型名称</label>
+                                <input type="text" value="肺炎检测模型 v2.0" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>状态</label>
+                                <input type="text" value="当前使用中" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>准确率</label>
+                                <input type="text" value="97%" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>切换时间</label>
+                                <input type="text" value="2026-03-17 10:30" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
